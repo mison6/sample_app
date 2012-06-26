@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "#{@user.name}, Welcome to the Sample App!"
       redirect_to @user
+      UserMailer.registration_confirmation(@user).deliver
     else
       render 'new'
     end
